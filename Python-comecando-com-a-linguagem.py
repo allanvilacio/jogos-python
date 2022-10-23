@@ -1,5 +1,5 @@
 import random
-import functions as func
+import utilitarios as func
 
 numero_secreto = random.randint(0,10)
 print('Foi sorteado um valor entre [0-10] descubra o valor.')
