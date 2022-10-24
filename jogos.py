@@ -23,6 +23,26 @@ def adivinhacao():
     print('Fim de jogo')
 
 def forca():
-    print("*"*60)
-    print("*"*20,"- Jogo da forca -" ,"*"*21,)
-    print("*"*60)
+    print("**************************************")
+    print("**********","- Jogo da forca -" ,"*********")
+    print("**************************************")
+
+    palavra_secreta = 'banana'
+    palavra_dica = ['_' for i in range(len(palavra_secreta))]
+
+    print(palavra_secreta)
+
+    while (palavra_dica.count('_') > 0):
+        print(palavra_dica)
+        print(f'Faltam {palavra_dica.count("_")} letras')
+        chance = input('digite uma leta: ')
+        for index, letra in enumerate(palavra_secreta):
+            if chance == letra:
+                palavra_dica[index] = chance
+        if chance not in palavra_secreta: 
+            print('Letra não encontrada.')
+            if not func.deseja_continuar():
+                print('Saindo do jogo!!')
+                break
+        
+forca()
