@@ -27,22 +27,43 @@ def forca():
     print("**********","- Jogo da forca -" ,"*********")
     print("**************************************")
 
-    palavra_secreta = 'banana'
+    palavra_secreta = func.selecionar_palavra_aleatoria(file='frutas.txt')
     palavra_dica = ['_' for i in range(len(palavra_secreta))]
+    chances = 3
 
     print(palavra_secreta)
 
-    while (palavra_dica.count('_') > 0):
+    while True:
+
         print(palavra_dica)
-        print(f'Faltam {palavra_dica.count("_")} letras')
-        chance = input('digite uma leta: ')
-        for index, letra in enumerate(palavra_secreta):
-            if chance == letra:
-                palavra_dica[index] = chance
-        if chance not in palavra_secreta: 
+        print()
+        chute = input('digite uma leta: ').upper()
+
+        if chute in palavra_secreta:
+            for index, letra in enumerate(palavra_secreta):
+                if chute == letra:
+                    palavra_dica[index] = chute
+        else:
+            chances-=1
             print('Letra não encontrada.')
+            if chances > 1:
+                print(f'Voce tem mais {chances} chances.')
+            elif chances == 1:
+                print(f'Voce tem mais {chances} chance.')
+            else:
+                print('Voce foi enforcado!')
+                break
             if not func.deseja_continuar():
                 print('Saindo do jogo!!')
                 break
-        
-forca()
+
+        print('Parabens!!')
+        if palavra_dica.count('_') > 1:
+            print(f'Faltam {palavra_dica.count("_")} letras')
+        elif palavra_dica.count('_') == 1:
+            print(f'Falta {palavra_dica.count("_")} letra')
+        else:
+            print('Voce ganhou!!')
+            break
+    print()
+    print('Fim de jogo.')
